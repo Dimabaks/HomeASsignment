@@ -1,0 +1,82 @@
+.cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;    
+    justify-items: center;
+    padding: 20px;
+}
+
+.card {
+    max-width: 200px;
+    background: rgb(255, 255, 255);   
+    border-radius: 10px;    
+    padding: 15px;      
+    border: 2px solid grey;
+    text-align: center; 
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.1);
+    outline: none;
+    
+}
+
+img {
+    border-radius: 12px;
+    height: 150px;
+    width: 200px;
+    object-fit: cover;
+}
+
+h2 {
+    font-size: clamp(16px, 2.5vw, 20px);
+}
+
+.price {
+    font-size: clamp(14px, 1.5vw, 18px);
+}
+
+.addToCart {
+    all: unset;
+    background-color: rgb(50, 109, 70);
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.addToCart:hover {
+    transform: scale(1.2);
+    background-color:  rgb(47, 192, 95);
+    transition: all 0.2s;
+}
+
+.card:focus {
+    outline: 3px solid #4200f8;
+    outline-offset: 4px;
+}
+
+
+@media (min-width: 600px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 900px) {
+    .cards {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #121212;
+    color: #fff;
+  }
+  .card {
+    background: #1e1e1e;
+    border-color: #444;
+  }
+  .addToCart {
+    background-color: #2e7d32;
+  }
+}
