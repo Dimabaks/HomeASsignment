@@ -3,9 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Accecible Pricing Table</title>
 </head>
 <body>
+    <section class="table">
+        <div class="button-wrapper">
+                <button class="monthly active">Pay monthly</button>
+                <button class="yearly">Pay yearly</button>
+            </div>
+        <div class="table-wrapper">
+            
+            <table>
+            <caption>Comparison Table</caption>
+            
+            <thead>
+                <tr>
+                    <th ></th>
+                    <th scope="col">Basic</th>
+                    <th scope="col" class="recommended">Pro</th>
+                    <th scope="col">Enterprise</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Cloud</th>
+                    <td>10 GB</td>
+                    <td>100 GB</td>
+                    <td>1 TB</td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Support</th>
+                    <td>Email</td>
+                    <td>24/7</td>
+                    <td>Personal Manager</td>
+                </tr>
+
+                <tr class="price">
+                    <th scope="row">Price</th>
+                    <td data-monthly="5$" data-yearly="4$">5$</td>
+                    <td data-monthly="10$" data-yearly="9$">10$</td>
+                    <td data-monthly="15$" data-yearly="13$">15$</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
     <script src="script.js"></script>
 </body>
 </html>
