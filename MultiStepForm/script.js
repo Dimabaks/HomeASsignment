@@ -4,6 +4,11 @@ const stepInfo = document.getElementById('stepInfo');
 const nextBtn = document.querySelector('.nextBtn');
 const prevBtn = document.querySelector('.prevBtn');
 const form = document.querySelector('.multiForm');
+const inputs = document.querySelectorAll("input");
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const passwordInput = document.getElementById('password');
+const ageInput = document.getElementById('age');
 const formSteps = ["one", "two", "three"];
 
 let currentStep = 0;
@@ -22,10 +27,12 @@ function updateStepVisibility() {
 
 updateStepVisibility();
 nextBtn.addEventListener('click', () => {
-    if(currentStep < formSteps.length - 1) {
+    if(ValidateStep(currentStep)) {
+        if(currentStep < formSteps.length - 1) {
         currentStep++;
         updateStepVisibility()
         console.log(currentStep);
+        }
     }
 })
 prevBtn.addEventListener('click', () => {
@@ -33,5 +40,57 @@ prevBtn.addEventListener('click', () => {
         currentStep--;
         updateStepVisibility()
         console.log('asdsa')
+        clearInputs();
     }
 })
+
+
+function ValidateStep(step) {
+    let isValid = true;
+
+    if (step === 0) {
+        if (!emailInput.value || !emailInput.value.includes("@")) {
+        const errorEmail = emailInput.parentElement.querySelector(".errorEmail");
+        if(errorEmail) errorEmail.remove();
+        emailInput.insertAdjacentHTML("afterend", "<span class='errorEmail' style = 'color :red'>Email is not valid!</span>")
+        isValid = false;
+        }
+        if (!passwordInput.value || passwordInput.value.length < 3) {
+        const errorPass = passwordInput.parentElement.querySelector(".errorPass");
+        if(errorPass) errorPass.remove();
+        passwordInput.insertAdjacentHTML("afterend", "<span class='errorPass' style = 'color :red'>Password is not valid!</span>")
+        isValid = false;
+        }
+    }
+    else if (step === 1) {
+        if (!nameInput.value) {
+        const errorName = nameInput.parentElement.querySelector(".errorName");
+        if(errorName) errorName.remove();
+        nameInput.insertAdjacentHTML("afterend", "<span class='errorName' style = 'color :red'>This is empty!</span>")
+        isValid = false;
+        }
+        if (!ageInput.value) {
+        const errorAge = ageInput.parentElement.querySelector(".errorAge");
+        if(errorAge) errorAge.remove();
+        ageInput.insertAdjacentHTML("afterend", "<span class='errorAge' style = 'color :red'>This is not a number</span>")
+        isValid = false;   
+        }
+    }
+    return isValid;
+}
+
+
+function autoClearError(input, errorClass, validator) {
+    input.addEventListener('input', () => {
+        const error = input.parentElement.querySelector(`.${errorClass}`);
+        if (error && validator(input.value)) {
+            error.remove();
+        }
+    });
+}
+autoClearError(passwordInput, 'errorPass', value => value.length >= 3);
+autoClearError(emailInput, 'errorEmail', value => value.includes('@'));
+
+function clearInputs() {
+    inputs.forEach(input => input.value ='');
+}
