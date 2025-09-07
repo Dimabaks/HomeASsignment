@@ -9,7 +9,35 @@ const nameInput = document.getElementById('name');
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
 const ageInput = document.getElementById('age');
+const bioInput = document.getElementById('bio');
 const formSteps = ["one", "two", "three"];
+const emailVal = document.getElementById('email-val')
+const passVal = document.getElementById('pass-val');
+const nameVal = document.getElementById('name-val');
+const ageVal = document.getElementById('age-val');
+const bioVal = document.getElementById('bio-val');
+
+
+inputs.forEach(input => {
+    input.addEventListener('input', () => {
+        localStorage.setItem(input.id, input.value);
+
+        const savedValue = localStorage.getItem(input.id);
+        if (savedValue) {
+            input.value = savedValue;
+        }
+    })
+});
+
+bioInput.addEventListener('input', () => {
+    localStorage.setItem(bioInput.id, bioInput.value)
+})
+const savedBio = localStorage.getItem(bioInput.id)
+if (savedBio) {
+    bioInput.value = savedBio;
+}
+
+// Change Steps
 
 let currentStep = 0;
 
@@ -22,6 +50,16 @@ function updateStepVisibility() {
     stepInfo.textContent = `Step ${currentStep + 1} of ${formSteps.length}`;
     prevBtn.style.display = currentStep === 0 ? "none" : "block";
     nextBtn.style.display = currentStep === formSteps.length - 1 ? "none" : "block";
+
+
+    //Step 3 Inputs value
+    if (currentStep === 2) {
+        emailVal.textContent = emailInput.value;
+        passVal.textContent = passwordInput.value;
+        nameVal.textContent = nameInput.value;
+        ageVal.textContent = ageInput.value;
+        bioVal.textContent = bioInput.value;
+    }
 }
 
 
@@ -31,7 +69,6 @@ nextBtn.addEventListener('click', () => {
         if(currentStep < formSteps.length - 1) {
         currentStep++;
         updateStepVisibility()
-        console.log(currentStep);
         }
     }
 })
@@ -39,12 +76,11 @@ prevBtn.addEventListener('click', () => {
     if (currentStep > 0) {
         currentStep--;
         updateStepVisibility()
-        console.log('asdsa')
         clearInputs();
     }
 })
 
-
+// Vaslidation Step
 function ValidateStep(step) {
     let isValid = true;
 
@@ -92,5 +128,11 @@ autoClearError(passwordInput, 'errorPass', value => value.length >= 3);
 autoClearError(emailInput, 'errorEmail', value => value.includes('@'));
 
 function clearInputs() {
-    inputs.forEach(input => input.value ='');
+    inputs.forEach(input => {
+        input.value ='';
+        localStorage.removeItem(input.id)
+    }); 
+    bioInput.value = '';
+    localStorage.removeItem(bioInput.id)
 }
+

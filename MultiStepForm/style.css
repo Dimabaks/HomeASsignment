@@ -29,3 +29,8 @@ label {
     align-items: center;
     gap: 15px;
 }
+
+.summarySection {
+    display: flex;
+    gap: 25px;
+}
