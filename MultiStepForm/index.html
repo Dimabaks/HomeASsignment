@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Multi Step Form</title>
+</head>
+<body>
+    <form class="multiForm" action="">
+        
+        <section class="form" id="one">
+            <h1>Registration Form</h1>
+            <label for="email">
+            Email:
+            <input type="email" name="email" id="email">
+        </label>
+        <label for="password">
+            Password:
+            <input type="text" name="password" id="password">
+        </label>
+        
+        </section>
+        <section class="form" id="two">
+            <label for="name">
+                Name:
+                <input type="text" name="name" id="name">
+            </label>
+            <label for="age">
+                Age:
+                <input type="number" name="age" id="age">
+            </label>
+            <label for="bio">
+                Biography:
+                <textarea name="bio" id="bio"></textarea>
+            </label>
+            
+        </section>
+        <section class="form" id="three">
+           <div class="summarySection">
+            <p>Email:</p>
+            <p id="email-val"></p>
+           </div>
+
+           <div class="summarySection">
+            <p>Password:</p>
+            <p id="pass-val"></p>
+           </div>
+
+           <div class="summarySection">
+            <p>Name:</p>
+            <p id="name-val"></p>
+           </div>
+
+           <div class="summarySection">
+            <p>Age:</p>
+            <p id="age-val"></p>
+           </div>
+
+           <div class="summarySection">
+            <p>Biography:</p>
+            <p id="bio-val"></p>
+           </div>
+        </section>
+         <div class="arrows">
+            <button type="button" class="prevBtn">Previous</button>
+            <span id="stepInfo"></span>
+            <button type="button" class="nextBtn">Next</button>
+        </div>
+    </form>
+    <script src="script.js"></script>
+</body>
+</html>
