@@ -16,6 +16,23 @@ table {
     background-color: #42f88c;
     color: white;
 }
+
+button {
+    border-radius: 16px;
+    padding: 10px 20px 10px 20px;
+    cursor: pointer;
+    background-color: rgb(209, 196, 196);
+    border: none;
+}
+
+button:hover {
+    outline: auto;
+}
+
+table {
+    margin-top: 30px;
+}
+
 .table-wrapper {
     overflow-x: auto;
 }
