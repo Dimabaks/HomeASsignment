@@ -18,6 +18,7 @@ const ageVal = document.getElementById('age-val');
 const bioVal = document.getElementById('bio-val');
 
 
+
 inputs.forEach(input => {
     input.addEventListener('input', () => {
         localStorage.setItem(input.id, input.value);
@@ -54,11 +55,11 @@ function updateStepVisibility() {
 
     //Step 3 Inputs value
     if (currentStep === 2) {
-        emailVal.textContent = emailInput.value;
-        passVal.textContent = passwordInput.value;
-        nameVal.textContent = nameInput.value;
-        ageVal.textContent = ageInput.value;
-        bioVal.textContent = bioInput.value;
+        document.getElementById("email-val").textContent = emailInput.value;
+        document.getElementById("pass-val").textContent = passwordInput.value;
+        document.getElementById("name-val").textContent = nameInput.value;
+        document.getElementById("age-val").textContent = ageInput.value;
+        document.getElementById("bio-val").textContent = bioInput.value;
     }
 }
 
@@ -136,3 +137,55 @@ function clearInputs() {
     localStorage.removeItem(bioInput.id)
 }
 
+
+const summaryValue = {
+    label: "Email", id: "email-val",
+    label: "Password", id: "pass-val",
+    label: "Name", id: "name-val",
+    label: "Age", id: "age-val",
+    label: "Biography", id: "bio-val"
+}
+
+class SummaryValue {
+  constructor(label, id) {
+    this.label = label;
+    this.id = id;
+  }
+
+  render() {
+    const section = document.createElement("div");
+    section.className = "summarySection";
+
+    const labelEl = document.createElement("p");
+    labelEl.textContent = this.label + ":";
+
+    const valueEl = document.createElement("p");
+    valueEl.id = this.id;
+
+    section.append(labelEl, valueEl);
+    return section;
+  }
+}
+
+class SummaryWrapper {
+  constructor(selector) {
+    this.container = document.querySelector(selector);
+  }
+
+  addSummaryValue(summaryValue) {
+    this.container.append(summaryValue.render());
+  }
+}
+
+
+const wrapper = new SummaryWrapper(".summaryWrapper");
+
+const values = [
+  new SummaryValue("Email", "email-val"),
+  new SummaryValue("Password", "pass-val"),
+  new SummaryValue("Name", "name-val"),
+  new SummaryValue("Age", "age-val"),
+  new SummaryValue("Biography", "bio-val"),
+];
+
+values.forEach(v => wrapper.addSummaryValue(v));
