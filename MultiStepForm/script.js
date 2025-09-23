@@ -11,11 +11,6 @@ const passwordInput = document.getElementById('password');
 const ageInput = document.getElementById('age');
 const bioInput = document.getElementById('bio');
 const formSteps = ["one", "two", "three"];
-const emailVal = document.getElementById('email-val')
-const passVal = document.getElementById('pass-val');
-const nameVal = document.getElementById('name-val');
-const ageVal = document.getElementById('age-val');
-const bioVal = document.getElementById('bio-val');
 
 
 
